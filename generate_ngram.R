@@ -1,5 +1,6 @@
 ## Load a csv file
 ### Change your path here : 
+main_dir <- getwd()
 samples <- read.csv(file = "wuthering_heights.csv",sep=',',stringsAsFactors = FALSE,header=TRUE)
 
 ## Extract the reviews 
