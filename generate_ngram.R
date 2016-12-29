@@ -1,5 +1,3 @@
-## Load a csv file
-### Change your path here : 
 main_dir <- getwd()
 samples <- read.csv(file = "wuthering_heights.csv",sep=',',stringsAsFactors = FALSE,header=TRUE)
 
@@ -25,6 +23,11 @@ for (i in 1:length(reviews)){
   tokenized_review <- strsplit(gsub(pattern = "\\.", replacement = " ", x=gsub(pattern="\\,", replacement=" ",x=trimws(reviews[[i]])))," ")[[1]]
   tokenized_review <- tokenized_review[tokenized_review!=""]
   tokenized_review[which(tokenized_review != 'I')] <- tolower(tokenized_review[which(tokenized_review != 'I')])
+  if (length(tokenized_review)==0){
+      next
+  }else if(all(!is.na(as.numeric(tokenized_review)))){
+      next
+  }
   first_words <- c(first_words,tokenized_review[1])
   next_words <- c(next_words,tokenized_review[2])
   comments[[i]] <- tokenized_review
@@ -76,10 +79,10 @@ for (i in 1:length(reviews)){
 }
     ## Remplir les dataframes unigram, bigram, et trigram à partir de là :
 if (dir.exists(file.path(main_dir, 'datas'))){
-    setwd("datas/")
+  setwd("datas/")
 }else {
-    dir.create(file.path(main_dir, 'datas'))
-    setwd(file.path(main_dir, 'datas'))
+  dir.create(file.path(main_dir, 'datas'))
+  setwd(file.path(main_dir, 'datas'))
 }
 
 
