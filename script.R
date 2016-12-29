@@ -1,5 +1,5 @@
 ### Set the working directory where the unigram, bigram and trigram are stored 
-source("generate_ngram.R")
+#source("generate_ngram.R")
 
 
 
