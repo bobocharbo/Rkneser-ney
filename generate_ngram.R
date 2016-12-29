@@ -1,4 +1,5 @@
 ## Load a csv file
+### Change your path here : 
 samples <- read.csv(file = "/home/bobo/cours/markov/kneser-ney/wuthering_heights.csv",sep=',',stringsAsFactors = FALSE,header=TRUE)
 
 ## Extract the reviews 
@@ -73,7 +74,7 @@ for (i in 1:length(reviews)){
   
 }
     ## Remplir les dataframes unigram, bigram, et trigram à partir de là :
-
+    
 save(first_words,file='starter.Rdata')
 save(next_words,file='second.Rdata')
 save(unigramDF,file='unigram.Rdata')
