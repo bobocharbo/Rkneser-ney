@@ -1,6 +1,6 @@
 ## Load a csv file
 ### Change your path here : 
-samples <- read.csv(file = "/home/bobo/cours/markov/kneser-ney/wuthering_heights.csv",sep=',',stringsAsFactors = FALSE,header=TRUE)
+samples <- read.csv(file = "wuthering_heights.csv",sep=',',stringsAsFactors = FALSE,header=TRUE)
 
 ## Extract the reviews 
 reviews <- samples[['review']]
