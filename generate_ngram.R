@@ -74,7 +74,14 @@ for (i in 1:length(reviews)){
   
 }
     ## Remplir les dataframes unigram, bigram, et trigram à partir de là :
-    
+if (dir.exists(file.path(main_dir, 'datas'))){
+    setwd("datas/")
+}else {
+    dir.create(file.path(main_dir, 'datas'))
+    setwd(file.path(main_dir, 'datas'))
+}
+
+
 save(first_words,file='starter.Rdata')
 save(next_words,file='second.Rdata')
 save(unigramDF,file='unigram.Rdata')
