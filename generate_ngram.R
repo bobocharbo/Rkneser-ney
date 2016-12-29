@@ -2,13 +2,14 @@ main_dir <- getwd()
 samples <- read.csv(file = "wuthering_heights.csv",sep=',',stringsAsFactors = FALSE,header=TRUE)
 
 ## Extract the reviews 
-reviews <- samples[['review']]
+reviews <- samples[['review']][1:10]
 
 ## Tokenize a comment : 
 comments <- list()
 
 first_words <- NULL
 next_words <- NULL
+last_words <- NULL
 unigramDF <- data.frame(unigram= character(0), freq= numeric(0),stringsAsFactors = F)
 bigramDF <- data.frame(bigram= character(0), freq= integer(0), unigram = character(0), name = character(0),stringsAsFactors = F)
 trigramDF <- data.frame(trigram=character(0), freq= integer(0), bigram = character(0), name=character(0),stringsAsFactors = F)
@@ -29,6 +30,7 @@ for (i in 1:length(reviews)){
       next
   }
   first_words <- c(first_words,tokenized_review[1])
+  last_words <- c(last_words, tokenized_review[length(tokenized_review)])
   next_words <- c(next_words,tokenized_review[2])
   comments[[i]] <- tokenized_review
     
@@ -79,7 +81,7 @@ for (i in 1:length(reviews)){
 }
     ## Remplir les dataframes unigram, bigram, et trigram à partir de là :
 if (dir.exists(file.path(main_dir, 'datas'))){
-  setwd("datas/")
+  setwd("datas")
 }else {
   dir.create(file.path(main_dir, 'datas'))
   setwd(file.path(main_dir, 'datas'))
@@ -87,10 +89,13 @@ if (dir.exists(file.path(main_dir, 'datas'))){
 
 
 save(first_words,file='starter.Rdata')
+save(last_words, file='ender.Rdata')
 save(next_words,file='second.Rdata')
 save(unigramDF,file='unigram.Rdata')
 save(bigramDF,file='bigram.Rdata')
 save(trigramDF,file='trigram.Rdata')
+
+setwd('..')
 
   
   
